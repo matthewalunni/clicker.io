@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<!-- Form -->
+<!-- In Button -->
+<div class="container">
+    <div class="button-holder">
+        <form action="/" method="post">
+            <p>
+            <input class="button-in" type="submit" name="clicker" value="In" />
+        <!-- Out Button -->
+            <input class="button-out" type="submit" name="clicker" value="Out" />
+        </form>
+    </div>
+    <div class="info-holder">
+        <p class="counter">
+            {{ total }}
+        </p> 
+    </div>
+    <div class="info-holder">
+        Average In:
+        <br>
+        {{ avg_in }}
+        <br>
+        Average Out:
+        <br>
+        {{ avg_out }}
+    </div>
+    <div class="button-holder">
+        <form action="/reset" method="POST">
+            <input type="submit" name="reset" value="Reset Session" />
+        </form>
+    </div>
+    <div class="button-holder">
+        <form action="/email" method="POST">
+            <p>
+                Email Session Data
+            </p>
+            <input type="text" name="email" value="" />
+            <input type="submit" name="submit" value="Submit" />
+        </form>
+    </div>
+</div>
+{% endblock %}

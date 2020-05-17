@@ -1,0 +1,95 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.button-in{
+    display: inline-block;
+    padding: 15px 35px;
+    font-size: 24px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: rgb(0, 150, 0);
+    border: none;
+    box-shadow: 0 9px #999;
+}
+
+.button-in:hover {background-color: rgb(0,150,0,0.5)}
+
+.button-in:active {
+    background-color:  rgb(0,150,0);
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+.button-out{
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 24px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: rgb(255,0,0);
+    border: none;
+    box-shadow: 0 9px #999;
+}
+
+.button-out:hover {background-color: rgb(255,0,0,0.5)}
+
+.button-out:active {
+    background-color:  rgb(255,0,0);
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+.button-holder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.info-holder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+}
+
+p {
+    font-size: 20px;
+    text-align: center;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+  /* Change the link color to #111 (black) on hover */
+li a:hover {
+    background-color: #111;
+}
+
+.counter {
+    color: purple;
+    font-size: 40px;
+    font-weight: bold;
+}

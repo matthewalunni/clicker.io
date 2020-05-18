@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for,send_file
 import sqlite3
 from functions import * 
 import smtplib
@@ -27,8 +27,14 @@ def click():
         record_click(click_type, new_total)
         print("There's A Click!")
         total = get_total()
-    avg_in = get_avg_in()
-    avg_out = get_avg_out()
+    try:
+        avg_in = get_avg_in()
+    except:
+        avg_in = 0
+    try:
+        avg_out = get_avg_out()
+    except:
+        avg_out = 0
     max = get_max()
     return render_template("click.html", total=total, avg_in = avg_in, avg_out=avg_out, max=max)
 
@@ -42,15 +48,21 @@ def email():
     if request.method == 'POST':
         receiver = request.form.get("email")
         send_mail(receiver)
-    avg_in = get_avg_in()
-    return render_template("click.html", total=total, avg_in = avg_in)
+    return redirect(url_for('click'))
 
 @app.route('/reset', methods=['GET','POST'])
 def reset():
     if request.method == 'POST':
         resetDB()
-        total = 0
-    return render_template("click.html", total=total)
+    return redirect(url_for('click'))
+
+@app.route('/download', methods=['GET','POST'])
+def download():
+    if request.method == 'POST':
+        filename_1 = request.form.get("filename_1")
+        convert_to_excel(filename_1)
+        path = 'filesforuser\\' + filename_1 + '.xlsx'
+    return send_file(path, as_attachment=True)
 
 # To run
 if __name__ == "__main__":

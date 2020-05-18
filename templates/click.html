@@ -22,15 +22,7 @@
 
 {% block content_two %}
     <div class="info-holder">
-        <table style="width:50%">
-            <tr>
-                <th>Stat</th>
-                <td>Data</td>
-            </tr>
-            <tr>
-                <th>Stat</th>
-                <td>Data</td>
-            </tr>
+        <table>
             <tr>
                 <th>Average In</th>
                 <td>{{ avg_in}}</td>
@@ -38,10 +30,6 @@
             <tr>
                 <th>Average Out</th>
                 <td>{{ avg_out}}</td>
-            </tr>
-            <tr>
-                <th>Stat</th>
-                <td>Data</td>
             </tr>
             <tr>
                 <th>Max</th>
@@ -59,10 +47,30 @@
     </div>
 {% endblock %}
 {% block content_four %}
-    <div class="button-holder">
+    <!-- <div class="button-holder">
         <form action="/email" method="POST">
             <input type="text" name="email" placeholder="Enter Your Email" /><br><br>
             <input type="submit" name="submit" value="Submit" class="button-other" />
         </form>
     </div>
+    <br> -->
+    <div class="button-holder">
+        <form action="/download" method="POST">
+            <input type="text" name="filename_1" placeholder="name your file" 
+            onfocus="this.placeholder = ''"
+            onblur="this.placeholder = 'name your file'" /><br><br>
+            <input type="submit" name="submit" value="Download" class="button-other" />
+        </form>
+    </div>
+{% endblock %}
+
+{% block content_five %}
+    <div class="button-holder">
+        <form action="/email" method="POST">
+            <input type="text" name="email" placeholder="enter your email" onfocus="this.placeholder = ''"
+            onblur="this.placeholder = 'enter your email'"/><br><br>
+            <input type="submit" name="submit" value="Send" class="button-other" />
+        </form>
+    </div>
+    <br>
 {% endblock %}

@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="static\styles.css">
+<script src="static\main.js"></script>
 <style>
 body {font-family: "Lato", sans-serif}
 .mySlides {display: none}
@@ -20,8 +21,7 @@ body {font-family: "Lato", sans-serif}
     <a href="#" class="w3-bar-item w3-button w3-padding-large">HOME</a>
     <a href="#stats" class="w3-bar-item w3-button w3-padding-large w3-hide-small">STATS</a>
     <a href="#reset" class="w3-bar-item w3-button w3-padding-large w3-hide-small">RESET</a>
-    <a href="#email" class="w3-bar-item w3-button w3-padding-large w3-hide-small">EMAIL</a>
-    <!-- <a href="#tour" class="w3-bar-item w3-button w3-padding-large w3-hide-small">TOUR</a> -->
+    <a href="#email" class="w3-bar-item w3-button w3-padding-large w3-hide-small">FUN</a>
     <a href="#contact" class="w3-bar-item w3-button w3-padding-large w3-hide-small">CONTACT</a>
     
       <div class="w3-dropdown-content w3-bar-block w3-card-4">
@@ -76,9 +76,19 @@ body {font-family: "Lato", sans-serif}
   <hr>
   <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="email">
     <h2 class="w3-wide"></h2>
-    <p class="w3-opacity"><i>email</i></p>
+    <p class="w3-opacity"><i>download session data</i></p>
     <p class="w3-justify">    
       {% block content_four %}
+      {% endblock %}
+    </p>
+  </div>
+
+  <hr>
+  <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="email">
+    <h2 class="w3-wide"></h2>
+    <p class="w3-opacity"><i>email report</i></p>
+    <p class="w3-justify">    
+      {% block content_five %}
       {% endblock %}
     </p>
   </div>

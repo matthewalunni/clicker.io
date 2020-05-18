@@ -128,6 +128,8 @@ def get_avg_in():
     else:
         avg_in = 0
 
+    avg_in = convert_timedelta(avg_in)
+
     return avg_in
 
 
@@ -163,6 +165,8 @@ def get_avg_out():
     else:
         avg_out = 0
 
+    avg_out = convert_timedelta(avg_out)
+
     return avg_out
 
 def get_max():
@@ -183,3 +187,34 @@ def get_max():
         max = 0
 
     return max
+
+def get_avg_stay():
+    avg_stay = get_avg_in() - get_avg_out()
+    return avg_stay
+
+def convert_timedelta(duration):
+    days, seconds = duration.days, duration.seconds
+    hours = days * 24 + seconds // 3600
+    minutes = (seconds % 3600) // 60
+    seconds = (seconds % 60)
+    return '{}m {}s'.format(minutes, seconds)
+
+def convert_to_excel(filename_1="your_awesome_clicker_file"):
+    # connecting to the database  
+    conn = sqlite3.connect('clicks.db', check_same_thread=False) 
+
+    # create cursor  
+    db = conn.cursor()
+    db.execute("SELECT * FROM click_tracker")
+
+    #Unpack vounter value
+    fetch = db.fetchall()
+
+    filename_1 = filename_1 + '.xlsx'
+
+    df = DataFrame(data=fetch, columns = ['click_id','click_type', 'timestamp', 'total'] )
+    
+    path = 'filesforuser\\' + filename_1
+    
+    df.to_excel(path, sheet_name='you_rock')
+

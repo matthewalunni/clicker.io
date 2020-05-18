@@ -23,7 +23,8 @@ body {font-family: "Lato", sans-serif}
     <a href="#reset" class="w3-bar-item w3-button w3-padding-large w3-hide-small">RESET</a>
     <a href="#email" class="w3-bar-item w3-button w3-padding-large w3-hide-small">FUN</a>
     <a href="#contact" class="w3-bar-item w3-button w3-padding-large w3-hide-small">CONTACT</a>
-    
+    <a href="#time" class="w3-bar-item w3-button w3-padding-large w3-hide-small" style="float: right;"><div id="txt"></div></a>
+    <body onload="startTime()"></body>
       <div class="w3-dropdown-content w3-bar-block w3-card-4">
         <a href="#" class="w3-bar-item w3-button">Merchandise</a>
         <a href="#" class="w3-bar-item w3-button">Extras</a>
@@ -49,7 +50,7 @@ body {font-family: "Lato", sans-serif}
   <!-- The Clicker Section -->
   <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="home">
     <h2 class="w3-wide">clicker.io</h2>
-    <p class="w3-opacity"><i>The World's Most Beautiful Clicker</i></p>
+    <p class="w3-opacity"><i>The World's Simplest Clicker</i></p>
     <p class="w3-justify">    
       {% block content_one %}
       {% endblock %}

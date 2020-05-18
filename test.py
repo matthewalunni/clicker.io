@@ -22,4 +22,14 @@ def line_graph():
     df.plot(x="Time", y='Total', kind = 'line')
     plt.show()
 
-convert_to_excel(filename_1="hello")
+# # def longest_wait_time():
+# # connecting to the database  
+# conn = sqlite3.connect("clicks.db", check_same_thread=False) 
+# # create cursor 
+# db = conn.cursor()
+# # Create click
+# with conn:
+#     db.execute("SELECT * FROM click_tracker")
+#     x = db.fetchall()
+
+line_graph()

@@ -197,9 +197,9 @@ def convert_timedelta(duration):
     hours = days * 24 + seconds // 3600
     minutes = (seconds % 3600) // 60
     seconds = (seconds % 60)
-    return '{}m {}s'.format(minutes, seconds)
+    return '{}h {}m {}s'.format(hours, minutes, seconds)
 
-def convert_to_excel(filename_1="your_awesome_clicker_file"):
+def convert_to_excel(filename_1):
     # connecting to the database  
     conn = sqlite3.connect('clicks.db', check_same_thread=False) 
 
@@ -217,4 +217,3 @@ def convert_to_excel(filename_1="your_awesome_clicker_file"):
     path = 'filesforuser\\' + filename_1
     
     df.to_excel(path, sheet_name='you_rock')
-

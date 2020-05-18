@@ -150,15 +150,36 @@ def get_avg_out():
         df2 = DataFrame(data = y, columns = ['click_id', 'click_type', 'timestamp'])
         last_out = df2['timestamp'][0]
 
-    first_out = datetime.strptime(first_out, '%Y-%m-%d %H:%M:%S')
-    last_out = datetime.strptime(last_out, '%Y-%m-%d %H:%M:%S')
-    diff = last_out - first_out
-
     with conn:
         db.execute ("SELECT count(click_id) FROM click_tracker WHERE click_type = 0")
         out_count = db.fetchall()
         out_count = out_count[0][0]
 
+    if first_out != None:     
+        first_out = datetime.strptime(first_out, '%Y-%m-%d %H:%M:%S')
+        last_out = datetime.strptime(last_out, '%Y-%m-%d %H:%M:%S')
+        diff = last_out - first_out
         avg_out = diff/out_count
+    else:
+        avg_out = 0
 
     return avg_out
+
+def get_max():
+
+    # connecting to the database  
+    conn = sqlite3.connect('clicks.db', check_same_thread=False) 
+
+    # create cursor  
+    db = conn.cursor()
+    db.execute("SELECT max(total) FROM click_tracker")
+
+    #Unpack vounter value
+    fetch = db.fetchall()
+
+    try:
+        max = int(fetch[0][0])
+    except:
+        max = 0
+
+    return max

@@ -28,11 +28,9 @@ def click():
         print("There's A Click!")
         total = get_total()
     avg_in = get_avg_in()
-    try:
-        avg_out = get_avg_out()
-    except:
-        avg_out = 0
-    return render_template("click.html", total=total, avg_in = avg_in, avg_out=avg_out)
+    avg_out = get_avg_out()
+    max = get_max()
+    return render_template("click.html", total=total, avg_in = avg_in, avg_out=avg_out, max=max)
 
 # EMAIL
 my_email = "foodforalltest@gmail.com"

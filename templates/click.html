@@ -1,6 +1,6 @@
-{% extends "layout.html" %}
+{% extends "layout2.html" %}
 
-{% block content %}
+{% block content_one %}
 <!-- Form -->
 <!-- In Button -->
 <div class="container">
@@ -17,28 +17,52 @@
             {{ total }}
         </p> 
     </div>
+</div>
+{% endblock %}
+
+{% block content_two %}
     <div class="info-holder">
-        Average In:
-        <br>
-        {{ avg_in }}
-        <br>
-        Average Out:
-        <br>
-        {{ avg_out }}
+        <table style="width:50%">
+            <tr>
+                <th>Stat</th>
+                <td>Data</td>
+            </tr>
+            <tr>
+                <th>Stat</th>
+                <td>Data</td>
+            </tr>
+            <tr>
+                <th>Average In</th>
+                <td>{{ avg_in}}</td>
+            </tr>
+            <tr>
+                <th>Average Out</th>
+                <td>{{ avg_out}}</td>
+            </tr>
+            <tr>
+                <th>Stat</th>
+                <td>Data</td>
+            </tr>
+            <tr>
+                <th>Max</th>
+                <td>{{ max }}</td>
+            </tr>
+        </table>
     </div>
+
+{% endblock %}
+{% block content_three %}
     <div class="button-holder">
         <form action="/reset" method="POST">
-            <input type="submit" name="reset" value="Reset Session" />
+            <input type="submit" name="reset" value="Reset Session" class="button-other"/>
         </form>
     </div>
+{% endblock %}
+{% block content_four %}
     <div class="button-holder">
         <form action="/email" method="POST">
-            <p>
-                Email Session Data
-            </p>
-            <input type="text" name="email" value="" />
-            <input type="submit" name="submit" value="Submit" />
+            <input type="text" name="email" placeholder="Enter Your Email" /><br><br>
+            <input type="submit" name="submit" value="Submit" class="button-other" />
         </form>
     </div>
-</div>
 {% endblock %}

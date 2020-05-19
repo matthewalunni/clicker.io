@@ -107,6 +107,7 @@ li a:hover {
     border: none;
     box-shadow: 0 9px #999;
     width: 175px;
+    border: solid black 1px;
 }
 
 .button-other:hover {

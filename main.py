@@ -62,7 +62,7 @@ def download():
         filename_1 = request.form.get("filename_1")
         convert_to_excel(filename_1)
         path = 'filesforuser\\' + filename_1 + '.xlsx'
-    return send_file(path, as_attachment=True)
+    return send_file(path, as_attachment=True) 
 
 # To run
 if __name__ == "__main__":

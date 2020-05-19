@@ -1,6 +1,5 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 import sqlite3
-from functions import * 
 import smtplib
 import os
 from email.message import EmailMessage

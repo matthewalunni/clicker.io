@@ -32,4 +32,15 @@ def line_graph():
 #     db.execute("SELECT * FROM click_tracker")
 #     x = db.fetchall()
 
-line_graph()
+# def get_avg_stay():
+# avg_stay = get_avg_out() - get_avg_in()
+    # return avg_stay
+
+a = get_avg_in()
+print(a)
+
+b = get_avg_out()
+print(b)
+
+c = b-a
+print(c)

@@ -1,11 +1,12 @@
 {% extends "layout2.html" %}
 
+
 {% block content_one %}
 <!-- Form -->
 <!-- In Button -->
 <div class="container">
     <div class="button-holder">
-        <form action="/" method="post">
+        <form name='form' action="/" method="post">
             <p>
             <input class="button-in" type="submit" name="clicker" value="In" id="inbtn"/>
         <!-- Out Button -->
@@ -32,6 +33,10 @@
                 <td>{{ avg_out}}</td>
             </tr>
             <tr>
+                <th>Average Visit</th>
+                <td>{{ avg_stay}}</td>
+            </tr>
+            <tr>
                 <th>Max</th>
                 <td>{{ max }}</td>
             </tr>
@@ -47,13 +52,6 @@
     </div>
 {% endblock %}
 {% block content_four %}
-    <!-- <div class="button-holder">
-        <form action="/email" method="POST">
-            <input type="text" name="email" placeholder="Enter Your Email" /><br><br>
-            <input type="submit" name="submit" value="Submit" class="button-other" />
-        </form>
-    </div>
-    <br> -->
     <div class="button-holder">
         <form action="/download" method="POST">
             <input type="text" name="filename_1" placeholder="name your file" 
@@ -67,10 +65,11 @@
 {% block content_five %}
     <div class="button-holder">
         <form action="/email" method="POST">
-            <input type="text" name="email" placeholder="enter your email" onfocus="this.placeholder = ''"
-            onblur="this.placeholder = 'enter your email'" required/><br><br>
+            <input type="email" name="email" placeholder="enter your email" onfocus="this.placeholder = ''"
+            onblur="this.placeholder = 'enter your email'" required autocomplete="on"/><br><br>
             <input type="submit" name="submit" value="Send" class="button-other" />
         </form>
     </div>
     <br>
+
 {% endblock %}

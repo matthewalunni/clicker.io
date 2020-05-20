@@ -9,18 +9,12 @@ import matplotlib.pyplot as plt
 from datetime import datetime
 import time
 
+# Connection created to access databse. Cursor created. Table dropped. Table created.
 def resetDB():
-    # connecting to the database  
     conn = sqlite3.connect("clicks.db", check_same_thread=False) 
-    
-    # create cursor  
     db = conn.cursor()
-
-    # Drop table
     with conn: 
         db.execute("DROP TABLE click_tracker")
-
-    # Create Giftcard Table
     with conn:
         db.execute("""CREATE TABLE click_tracker (
                     click_id INTEGER PRIMARY KEY,
@@ -29,16 +23,10 @@ def resetDB():
                     total INTEGER
                     )""")
 
+# Connection created to database. Cursor created. Click information record into table.
 def record_click(click_type, new_total):
-    # connecting to the database  
     conn = sqlite3.connect("clicks.db", check_same_thread=False) 
-    
-    # create cursor 
-
-    # Grab current count 
     db = conn.cursor()
-
-    # Create click
     with conn:
         db.execute("""INSERT INTO click_tracker (click_type, total) 
         VALUES (:click_type, :new_total)""", {
@@ -47,7 +35,6 @@ def record_click(click_type, new_total):
         })  
 
 def get_total():
-
     # connecting to the database  
     conn = sqlite3.connect('clicks.db', check_same_thread=False) 
 
@@ -77,22 +64,18 @@ def send_mail(receiver):
     msg['From'] = EMAIL_ADDRESS
     msg['To'] = receiver
     msg.set_content('This is the body of a TEST Email created and sent using PYTHON')
-
     msg.add_alternative("""
-<!DOCTYPE html>
-<html>
-    <body>
-        <body>
-            This is a test.
-        </body>
-    </body>
-</html>
+        <!DOCTYPE html>
+        <html>
+            <body>
+                <body>
+                    This is a test.
+                </body>
+            </body>
+        </html>
     """, subtype='html')
-
-
     with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
         smtp.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
-
         smtp.send_message(msg)
 
 def get_avg_in():
@@ -126,8 +109,6 @@ def get_avg_in():
         avg_in = diff/in_count
     else:
         avg_in = 0
-
-    avg_in = convert_timedelta(avg_in)
 
     return avg_in
 
@@ -164,8 +145,6 @@ def get_avg_out():
     else:
         avg_out = 0
 
-    avg_out = convert_timedelta(avg_out)
-
     return avg_out
 
 def get_max():
@@ -188,7 +167,7 @@ def get_max():
     return max
 
 def get_avg_stay():
-    avg_stay = get_avg_in() - get_avg_out()
+    avg_stay = get_avg_out() - get_avg_in()
     return avg_stay
 
 def convert_timedelta(duration):

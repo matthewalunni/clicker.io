@@ -1,13 +1,12 @@
 {% extends "layout2.html" %}
 
-
 {% block content_one %}
 <!-- Form -->
-<!-- In Button -->
 <div class="container">
     <div class="button-holder">
         <form name='form' action="/" method="post">
             <p>
+        <!-- In Button -->
             <input class="button-in" type="submit" name="clicker" value="In" id="inbtn"/>
         <!-- Out Button -->
             <input class="button-out" type="submit" name="clicker" value="Out" />
@@ -22,57 +21,57 @@
 {% endblock %}
 
 {% block content_two %}
-    <div class="info-holder">
-        <table>
-            <tr>
-                <th>Average In</th>
-                <td>{{ avg_in}}</td>
-            </tr>
-            <tr>
-                <th>Average Out</th>
-                <td>{{ avg_out}}</td>
-            </tr>
-            <tr>
-                <th>Average Visit</th>
-                <td>{{ avg_visit}}</td>
-            </tr>
-            <tr>
-                <th>Max</th>
-                <td>{{ max }}</td>
-            </tr>
-        </table>
-    </div>
+<div class="info-holder">
+    <table>
+        <tr>
+            <th>Average In</th>
+            <td>{{ avg_in}}</td>
+        </tr>
+        <tr>
+            <th>Average Out</th>
+            <td>{{ avg_out}}</td>
+        </tr>
+        <tr>
+            <th>Average Visit</th>
+            <td>{{ avg_visit}}</td>
+        </tr>
+        <tr>
+            <th>Max</th>
+            <td>{{ max }}</td>
+        </tr>
+    </table>
+</div>
+{% endblock %}
 
-{% endblock %}
 {% block content_three %}
-    <div class="button-holder">
-        <form action="/reset" method="POST">
-            <input type="submit" name="reset" value="Reset Session" class="button-other"/>
-        </form>
-    </div>
+<div class="button-holder">
+    <form action="/reset" method="POST">
+        <input type="submit" name="reset" value="Reset Session" class="button-other"/>
+    </form>
+</div>
 {% endblock %}
+
 {% block content_four %}
-    <div class="button-holder">
-        <form action="/download" method="POST">
-            <input type="text" name="filename_1" placeholder="name your file" 
-            onfocus="this.placeholder = ''"
-            onblur="this.placeholder = 'name your file'" required pattern="[A-Za-z0-9]{0,100}" title="Letters and Numbers Only"/><br><br>
-            <input type="submit" name="submit" value="Download" class="button-other"/>
-        </form>
-    </div>
+<div class="button-holder">
+    <form action="/download" method="POST">
+        <input type="text" name="filename_1" placeholder="name your file" onfocus="this.placeholder = ''" onblur="this.placeholder = 'name your file'" required pattern="[A-Za-z0-9]{0,100}" title="Letters and Numbers Only"/>
+        <br>
+        <br>
+        <input type="submit" name="submit" value="Download" class="button-other"/>
+    </form>
+</div>
 {% endblock %}
 
 {% block content_five %}
-    <div class="button-holder">
-        <form action="/email" method="POST">
-            <input type="email" name="email" placeholder="enter your email" onfocus="this.placeholder = ''"
-            onblur="this.placeholder = 'enter your email'" required autocomplete="on"/><br><br>
-            <input type="submit" name="submit" value="Send" class="button-other" />
-        </form>
-    </div>
-    <br>
+<div class="button-holder">
+    <form action="/email" method="POST">
+        <input type="email" name="email" placeholder="enter your email" onfocus="this.placeholder = ''"
+        onblur="this.placeholder = 'enter your email'" required autocomplete="on"/><br><br>
+        <input type="submit" name="submit" value="Send" class="button-other" />
+    </form>
+</div>
+<br>
 {% endblock %}
 
 {% block content_six %}
-
 {% endblock %}

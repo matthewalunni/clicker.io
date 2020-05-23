@@ -23,23 +23,24 @@ function startTime() {
     return i;
   }
 
-$(document).ready(function() {
-  $('#formin').on('submit', function(event) {
+// Learning AJAX
+// $(document).ready(function() {
+//   $('#formin').on('submit', function(event) {
 
-    $.ajax({
-      data : {
-        type : $("#inBtn").val()
-      },
-      type : 'POST',
-      url : '/process'
-    })
-    .done(function(data) {
+//     $.ajax({
+//       data : {
+//         type : $("#inBtn").val()
+//       },
+//       type : 'POST',
+//       url : '/process'
+//     })
+//     .done(function(data) {
 
-      $('#total').text(data.total);
+//       $('#total').text(data.total);
 
-    })
+//     })
 
-    event.preventDefault();
+//     event.preventDefault();
 
-  }
-});
+//   }
+// });

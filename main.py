@@ -7,13 +7,10 @@ from email.message import EmailMessage
 from datetime import time
 from random import sample
 
-
 app = Flask(__name__)
 
-# Connecting to the database  
-connection = sqlite3.connect("clicks.db", check_same_thread=False) 
-# Cursor  
-db = connection.cursor() 
+connection = sqlite3.connect("clicks.db", check_same_thread=False)                    # Connect to sqlite3
+db = connection.cursor()                                                              # Create a cursor
 
 @app.route('/', methods=['GET','POST'])
 def click():
@@ -43,11 +40,11 @@ def click():
     except:
         avg_visit = 0
     return render_template("click.html", total=total, avg_in = avg_in, avg_out=avg_out, max=max, avg_visit=avg_visit)
-# EMAIL
-my_email = "foodforalltest@gmail.com"
-my_password = "welovefood"
+
 @app.route('/email', methods=['GET','POST'])
 def email():
+    my_email = "foodforalltest@gmail.com"                                        
+    my_password = "welovefood"
     if request.method == 'POST':
         receiver = request.form.get("email")
         send_mail(receiver)
@@ -67,6 +64,5 @@ def download():
         path = 'filesforuser\\' + filename_1 + '.xlsx'
     return send_file(path, as_attachment=True) 
 
-# To run
-if __name__ == "__main__":
+if __name__ == "__main__":                                                            # to run the program
     app.run(debug=True)

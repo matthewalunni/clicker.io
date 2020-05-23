@@ -9,8 +9,7 @@ import matplotlib.pyplot as plt
 from datetime import datetime
 import time
 
-# Connection created to access databse. Cursor created. Table dropped. Table created.
-def resetDB():
+def resetDB(): # Connection created to access databse. Cursor created. Table dropped. Table created.
     conn = sqlite3.connect("clicks.db", check_same_thread=False) 
     db = conn.cursor()
     with conn: 
@@ -22,8 +21,8 @@ def resetDB():
                     timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                     total INTEGER
                     )""")
-# Connection created to database. Cursor created. Click information record into table.
-def record_click(click_type, new_total):
+
+def record_click(click_type, new_total): # Records click information into a table.
     conn = sqlite3.connect("clicks.db", check_same_thread=False) 
     db = conn.cursor()
     with conn:
@@ -32,6 +31,7 @@ def record_click(click_type, new_total):
             "click_type": click_type,
             "new_total": new_total
         })  
+
 def get_total():
     # connecting to the database  
     conn = sqlite3.connect('clicks.db', check_same_thread=False) 
@@ -49,6 +49,7 @@ def get_total():
         total = 0
 
     return total
+
 def send_mail(receiver):
     # EMAIL
     my_email = "foodforalltest@gmail.com"
@@ -74,6 +75,7 @@ def send_mail(receiver):
     with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
         smtp.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
         smtp.send_message(msg)
+
 def get_avg_in():
     # connecting to the database  
     conn = sqlite3.connect("clicks.db", check_same_thread=False) 
@@ -107,6 +109,7 @@ def get_avg_in():
         avg_in = 0
 
     return avg_in
+
 def get_avg_out():
     # connecting to the database  
     conn = sqlite3.connect("clicks.db", check_same_thread=False) 
@@ -140,6 +143,7 @@ def get_avg_out():
         avg_out = 0
 
     return avg_out
+
 def get_max():
 
     # connecting to the database  
@@ -158,6 +162,7 @@ def get_max():
         max = 0
 
     return max
+
 def get_avg_visit():
     avg_stay = get_avg_out() - get_avg_in()
     return avg_stay
@@ -200,3 +205,19 @@ def get_df():
         df = DataFrame(data = x, columns = ['click_id', 'click_type', 'timestamp', 'total'])
 
     return df
+
+def line_graph():
+    # connecting to the database  
+    conn = sqlite3.connect("clicks.db", check_same_thread=False) 
+    # create cursor 
+    db = conn.cursor()
+
+    # Create click
+    with conn:
+        db.execute("SELECT * FROM click_tracker")
+        x = db.fetchall()
+
+    df = DataFrame(data = x, columns = ['ID', 'Type', "Time", "Total"])
+
+    df.plot(x="Time", y='Total', kind = 'line')
+    plt.show()

@@ -22,3 +22,24 @@ function startTime() {
     if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
     return i;
   }
+
+$(document).ready(function() {
+  $('#formin').on('submit', function(event) {
+
+    $.ajax({
+      data : {
+        type : $("#inBtn").val()
+      },
+      type : 'POST',
+      url : '/process'
+    })
+    .done(function(data) {
+
+      $('#total').text(data.total);
+
+    })
+
+    event.preventDefault();
+
+  }
+});

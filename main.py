@@ -1,9 +1,12 @@
-from flask import Flask, render_template, request, redirect, url_for,send_file
+from flask import Flask, render_template, request, redirect, url_for,send_file, jsonify
 import sqlite3
-from functions import get_avg_in, get_avg_out, get_total, record_click, get_max, send_mail, resetDB, convert_timedelta, get_avg_stay
+from functions import get_avg_in, get_avg_out, get_total, record_click, get_max, send_mail, resetDB, convert_timedelta, get_avg_visit, convert_to_excel, get_df
 import smtplib
 import os
 from email.message import EmailMessage
+from datetime import time
+from random import sample
+
 
 app = Flask(__name__)
 
@@ -35,13 +38,14 @@ def click():
     except:
         avg_out = 0
     max = get_max()
-    avg_stay = convert_timedelta(get_avg_stay())
-    return render_template("click.html", total=total, avg_in = avg_in, avg_out=avg_out, max=max, avg_stay=avg_stay)
-
+    try:
+        avg_visit = convert_timedelta(get_avg_visit())
+    except:
+        avg_visit = 0
+    return render_template("click.html", total=total, avg_in = avg_in, avg_out=avg_out, max=max, avg_visit=avg_visit)
 # EMAIL
 my_email = "foodforalltest@gmail.com"
 my_password = "welovefood"
-
 @app.route('/email', methods=['GET','POST'])
 def email():
     if request.method == 'POST':

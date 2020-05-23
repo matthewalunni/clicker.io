@@ -22,7 +22,6 @@ def resetDB():
                     timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                     total INTEGER
                     )""")
-
 # Connection created to database. Cursor created. Click information record into table.
 def record_click(click_type, new_total):
     conn = sqlite3.connect("clicks.db", check_same_thread=False) 
@@ -33,7 +32,6 @@ def record_click(click_type, new_total):
             "click_type": click_type,
             "new_total": new_total
         })  
-
 def get_total():
     # connecting to the database  
     conn = sqlite3.connect('clicks.db', check_same_thread=False) 
@@ -51,7 +49,6 @@ def get_total():
         total = 0
 
     return total
-
 def send_mail(receiver):
     # EMAIL
     my_email = "foodforalltest@gmail.com"
@@ -77,7 +74,6 @@ def send_mail(receiver):
     with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
         smtp.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
         smtp.send_message(msg)
-
 def get_avg_in():
     # connecting to the database  
     conn = sqlite3.connect("clicks.db", check_same_thread=False) 
@@ -111,8 +107,6 @@ def get_avg_in():
         avg_in = 0
 
     return avg_in
-
-
 def get_avg_out():
     # connecting to the database  
     conn = sqlite3.connect("clicks.db", check_same_thread=False) 
@@ -146,7 +140,6 @@ def get_avg_out():
         avg_out = 0
 
     return avg_out
-
 def get_max():
 
     # connecting to the database  
@@ -165,17 +158,19 @@ def get_max():
         max = 0
 
     return max
-
-def get_avg_stay():
+def get_avg_visit():
     avg_stay = get_avg_out() - get_avg_in()
     return avg_stay
-
+    
 def convert_timedelta(duration):
-    days, seconds = duration.days, duration.seconds
-    hours = days * 24 + seconds // 3600
-    minutes = (seconds % 3600) // 60
-    seconds = (seconds % 60)
-    return '{}h {}m {}s'.format(hours, minutes, seconds)
+    try:
+        days, seconds = duration.days, duration.seconds
+        hours = days * 24 + seconds // 3600
+        minutes = (seconds % 3600) // 60
+        seconds = (seconds % 60)
+        return '{}h {}m {}s'.format(hours, minutes, seconds)
+    except:
+        return 0
 
 def convert_to_excel(filename_1):
     # connecting to the database  
@@ -195,3 +190,13 @@ def convert_to_excel(filename_1):
     path = 'filesforuser\\' + filename_1
     
     df.to_excel(path, sheet_name='you_rock')
+    
+def get_df():
+    conn = sqlite3.connect("clicks.db", check_same_thread=False) 
+    db = conn.cursor()
+    with conn:
+        db.execute("SELECT * FROM click_tracker")
+        x = db.fetchall()
+        df = DataFrame(data = x, columns = ['click_id', 'click_type', 'timestamp', 'total'])
+
+    return df

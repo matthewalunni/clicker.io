@@ -56,8 +56,8 @@
         <form action="/download" method="POST">
             <input type="text" name="filename_1" placeholder="name your file" 
             onfocus="this.placeholder = ''"
-            onblur="this.placeholder = 'name your file'" required/><br><br>
-            <input type="submit" name="submit" value="Download" class="button-other" />
+            onblur="this.placeholder = 'name your file'" required pattern="[A-Za-z0-9]{0,100}" title="Letters and Numbers Only"/><br><br>
+            <input type="submit" name="submit" value="Download" class="button-other"/>
         </form>
     </div>
 {% endblock %}

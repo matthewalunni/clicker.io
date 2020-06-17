@@ -44,3 +44,20 @@ function startTime() {
 
 //   }
 // });
+
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelector("#in").onclick = countup;
+  document.querySelector("#out").onclick = countdown;
+});
+
+let counter = 0;
+
+function countup() {
+  counter++;
+  document.querySelector("#tempcount").innerHTML = counter;
+}
+
+function countdown() {
+  counter--;
+  document.querySelector("#tempcount").innerHTML = counter;
+}
